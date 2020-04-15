@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import Cart from './Cart'
 import Shop from './Shop'
 import './App.css';
 import Bar from './Navbar';
+import { connect } from 'react-redux';
+import { fetchItems } from './actions';
 
-function App() {
+class App extends Component {
+  componentDidMount(){
+    this.props.fetchItems();
+  }
+  render(){
   return (
     <div className="App">
       <Bar></Bar>
@@ -17,6 +23,7 @@ function App() {
         </Switch>
     </div>
   );
+  }
 }
 
-export default App;
+export default connect(null, {fetchItems})(App);

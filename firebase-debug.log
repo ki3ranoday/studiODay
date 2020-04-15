@@ -1,0 +1,30 @@
+[debug] [2020-04-15T19:30:47.658Z] ----------------------------------------------------------------------
+[debug] [2020-04-15T19:30:47.660Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only hosting:studioday
+[debug] [2020-04-15T19:30:47.660Z] CLI Version:   8.0.3
+[debug] [2020-04-15T19:30:47.660Z] Platform:      darwin
+[debug] [2020-04-15T19:30:47.660Z] Node Version:  v10.16.0
+[debug] [2020-04-15T19:30:47.661Z] Time:          Wed Apr 15 2020 15:30:47 GMT-0400 (Eastern Daylight Time)
+[debug] [2020-04-15T19:30:47.661Z] ----------------------------------------------------------------------
+[debug] [2020-04-15T19:30:47.661Z] 
+[debug] [2020-04-15T19:30:47.673Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-15T19:30:47.673Z] > authorizing via signed-in user
+[debug] [2020-04-15T19:30:47.674Z] [iam] checking project studioday-52a42 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-04-15T19:30:47.677Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/studioday-52a42:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-04-15T19:30:47.930Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 15 Apr 2020 19:30:47 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=154","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-15T19:30:47.932Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/studioday-52a42  
+ 
+[debug] [2020-04-15T19:30:48.110Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 15 Apr 2020 19:30:48 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'studioday-52a42'...
+[info] 
+[info] i  deploying hosting
+[info] 
+[info] ✔  Deploy complete!
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/studioday-52a42/overview
+[debug] [2020-04-15T19:30:48.191Z] TypeError: Cannot read property 'deploys' of undefined
+    at /usr/local/lib/node_modules/firebase-tools/lib/deploy/index.js:84:36
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[error] 
+[error] Error: An unexpected error has occurred.
