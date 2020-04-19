@@ -24,13 +24,13 @@ class Shop extends Component {
                                                     <div className='grayBG'>
                                                         <img className='shopImg' src={item['image']} />
                                                         <div className='row'>
-                                                            <h3 className='col'>{item['name']}</h3>
+                                                            <h3 className='col'>{key}</h3>
                                                             <h3 className='col'>${item['price']}</h3>
                                                         </div>
                                                         <p>{item['description']}</p>
                                                         <div className='row'>
                                                             <p className='col-lg-8 col'>Stock: {item['stock']}</p>
-                                                            <Button className='col-lg-4 col' disabled={this.props.items[key]['stock']==0}onClick={() => this.props.addToCart(key)}>Add To Cart</Button>
+                                                            <Button className='col-lg-4 col' onClick={() => this.props.addToCart(key)}>Add To Cart</Button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -53,7 +53,7 @@ class Shop extends Component {
 
 const mapStoreToProps = (store) => {
     return {
-        items: store.data.items
+        items: store.data.items,
     }
 }
 export default connect(mapStoreToProps, { addToCart })(Shop)

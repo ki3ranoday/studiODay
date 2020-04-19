@@ -55,20 +55,20 @@ class CheckoutPage extends Component {
             return;
         }
         var itemUpdates = {}
-        this.props.cart.items.forEach(item => {
+        Object.keys(this.props.cart.items).forEach(item => {
             var key = item+'/stock';
             if(key in itemUpdates){
                 if(itemUpdates[key]-1 >= 0){
                     itemUpdates[key] = itemUpdates[key]-1
                 }else{
-                    this.setState({error: "Sorry, there isn't enough " + this.props.items[item]['name'] + " left in stock" })
+                    this.setState({error: "Sorry, there isn't enough " + item + " left in stock" })
                     return;
                 }
             } else {
                 if(this.props.items[item]['stock'] - 1 >= 0){
                     itemUpdates[key] = this.props.items[item]['stock'] - 1
                 }else{
-                    this.setState({error: "\nSorry, there isn't enough " + this.props.items[item]['name'] + " left in stock" })
+                    this.setState({error: "\nSorry, there isn't enough " + item + " left in stock" })
                     return;
                 }
             }
