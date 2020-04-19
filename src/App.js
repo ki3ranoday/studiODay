@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import HomePage from './HomePage'
-import Cart from './Cart'
+import CheckoutPage from './CheckoutPage'
 import Shop from './Shop'
 import './App.css';
 import Bar from './Navbar';
@@ -18,7 +18,7 @@ class App extends Component {
       <Bar></Bar>
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/cart' component={Cart} />
+          <Route exact path='/checkout' component={CheckoutPage} />
           <Route exact path='/shop' component={Shop} />
         </Switch>
     </div>

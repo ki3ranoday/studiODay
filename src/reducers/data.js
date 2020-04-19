@@ -1,4 +1,4 @@
-import { FETCH_ITEMS, ADD_TO_CART, REMOVE_FROM_CART, CHECKOUT } from "../actions"
+import { FETCH_ITEMS, ADD_TO_CART, REMOVE_FROM_CART, CHECKOUT, CLEAR_CART } from "../actions"
 
 const initialCart = {
     full_name: null,
@@ -38,7 +38,15 @@ export default (state = initialState, action) => {
                 ...state,
                 cart: {
                     ...state.cart,
-                    items: state.cart.items.filter(element => element.id != action.payload.id)
+                    items: state.cart.items.filter((v,i) => i!=action.payload)
+                }
+            }
+        case CLEAR_CART:
+            return {
+                ...state,
+                cart: {
+                    ...state.cart,
+                    items: []
                 }
             }
         case CHECKOUT:

@@ -1,3 +1,11 @@
+html {
+    background: url("./assets/DSC_0209.jpeg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +18,55 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.navBrand {
+  font-size: 24px;
+  color: black;
+}
+
+.navBrand:hover {
+  color: darkslategrey;
+  text-decoration: none;
+}
+
+
+.navLink {
+  font-size: 18px;
+  color: grey;
+}
+
+.navLink:hover {
+  color: darkslategrey;
+  text-decoration: none;
+}
+
+.shopImg {
+  max-width: 80%;
+}
+
+.grayBG {
+  padding: 30px;
+  background: lightgrey;
+  border-radius: 5px;
+}
+
+.lg {
+  color: lightgrey;
+  font-weight: bolder;
+}
+
+body {
+  background: transparent;
+  background-color: #fff0;
+}
+
+.cancel {
+  color: red;
+  font-weight: bolder;
+}
+
+.cancel:hover {
+  color: #FAA;
+  cursor: pointer;
 }
