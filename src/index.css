@@ -41,10 +41,6 @@ code {
   text-decoration: none;
 }
 
-.shopImg {
-  max-width: 80%;
-}
-
 .grayBG {
   padding: 30px;
   background: lightgrey;
@@ -69,4 +65,38 @@ body {
 .cancel:hover {
   color: #FAA;
   cursor: pointer;
+}
+
+.shopContainer {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.shopItemContainer {
+  width: 100%;
+}
+.shopItemImg {
+  width: 100%;
+}
+.shopItemInfo {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0007;
+  color: white;
+  visibility: hidden;
+}
+
+.shopItemContainer:hover .shopItemInfo {
+  visibility: visible;
+}
+
+.addToCart {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
 }

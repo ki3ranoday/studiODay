@@ -11,13 +11,13 @@ import {BrowserRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reducers from './reducers'
 
-const store = createStore(reducers, {}, compose(applyMiddleware(reduxThunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+export const store = createStore(reducers, {}, compose(applyMiddleware(reduxThunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 ReactDOM.render(
   <Provider store = {store}>
-  <BrowserRouter>
-      <App />
-  </BrowserRouter>
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
   </Provider>,
 
   document.getElementById('root')

@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { renderToString } from 'react-dom/server'
 import { checkout, clearCart } from './actions'
 import Cart from './Cart'
+import {store} from './index'
+import {Provider} from 'react-redux'
+import {BrowserRouter} from 'react-router-dom'
 
 const initialState = {
-        email: '',
-        venmo:'',
+    email: '',
+    venmo: '',
 
-        name: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
+    name: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
 
-        subscribe: false,
-        noShipping: false,
+    subscribe: false,
+    noShipping: false,
 
-        error: null
+    error: null
 }
 class CheckoutPage extends Component {
     constructor() {
@@ -31,67 +35,120 @@ class CheckoutPage extends Component {
         });
     };
 
-    checkForm = () => {
-        if(!this.state.name || !this.state.address || !this.state.city || !this.state.state || !this.state.zip){
-            return "Please finish filling out your address"
+    formGood = () => {
+        if (Object.keys(this.props.cart).length == 0) {
+            this.setState({ error: 'Your cart is empty, add things to check out' })
+            return false;
         }
-        if(!this.state.email){
-            return "Please enter your email so we can reach you if there are any issues with your order"
+        else if (!this.state.name || !this.state.address || !this.state.city || !this.state.state || !this.state.zip) {
+            this.setState({ error: "Please finish filling out your address" })
+            return false;
         }
-        if(!this.state.venmo){
-            return "Please enter your venmo id, we will send you a venmo request when you complete your order"
+        else if (!this.state.email) {
+            this.setState({ error: "Please enter your email so we can reach you if there are any issues with your order" })
+            return false;
         }
-        return null;
+        else if (!this.state.venmo) {
+            this.setState({ error: "Please enter your venmo id, we will send you a venmo request when you complete your order" })
+            return false;
+        }
+        else {
+            this.setState({ error: '' })
+            return true;
+        }
     }
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.setState({error: this.checkForm()})
-        if(this.state.error){
-            return;
-        }
-        if(this.props.cart.items.length == 0){
-            this.setState({error:'Your cart is empty, add things to check out'});
+        if (!this.formGood()) {
             return;
         }
         var itemUpdates = {}
-        Object.keys(this.props.cart.items).forEach(item => {
-            var key = item+'/stock';
-            if(key in itemUpdates){
-                if(itemUpdates[key]-1 >= 0){
-                    itemUpdates[key] = itemUpdates[key]-1
-                }else{
-                    this.setState({error: "Sorry, there isn't enough " + item + " left in stock" })
-                    return;
-                }
-            } else {
-                if(this.props.items[item]['stock'] - 1 >= 0){
-                    itemUpdates[key] = this.props.items[item]['stock'] - 1
-                }else{
-                    this.setState({error: "\nSorry, there isn't enough " + item + " left in stock" })
-                    return;
-                }
-            }
+        Object.keys(this.props.cart).forEach(item => {
+            var key = item + '/stock';
+            itemUpdates[key] = this.props.items[item]['stock'] - this.props.cart[item]
         })
-        if(!this.state.error){
-            this.props.checkout(itemUpdates);
-            this.props.clearCart();
-            this.setState({...initialState});
+        const emailinfo = {
+            'email': this.state.email,
+            'name': this.state.name,
+            'emailText': this.emailText(),
+            'emailHTML': this.emailHtml(),
+            'subscribe': this.state.subscribe
         }
-
+        const orderInfo = {
+            'name': this.state.name,
+            'email': this.state.email,
+            'venmo': this.state.venmo,
+            'cart': this.props.cart,
+            'address': {
+                'address': this.state.address,
+                'city': this.state.city,
+                'state': this.state.state,
+                'zip': this.state.zip
+            }
+        }
+        if (!this.state.error) {
+            this.props.checkout(itemUpdates, emailinfo, orderInfo);
+            this.props.clearCart();
+            this.setState({ ...initialState });
+        }
     }
+
+    emailText = () => {
+        var email = '';
+
+        email += 'Order for ' + this.state.name + ',\n\n'
+        Object.keys(this.props.cart).forEach(key => {
+            email += key + ':\tx' + this.props.cart[key] + '\t$' + this.props.items[key]['price'] + '\n'
+        })
+        email += 'Subtotal: ' + Cart.calculateTotal + '\n\n'
+        email += 'Shipping: ' + Cart.calculateShipping + '\n\n'
+        email += 'Total: ' + (Cart.calculateTotal + Cart.calculateShipping) + '\n\n'
+        email += 'Venmo: ' + this.state.venmo + '\n'
+        email += 'Email: ' + this.state.email + '\n\n'
+        email += 'Address:\n\n'
+        email += this.state.name + '\n'
+        email += this.state.address + '\n'
+        email += this.state.city + ' ' + this.state.state + ', ' + this.state.zip
+
+        return email
+    }
+
+    emailHtml = () => {
+        return renderToString(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <OrderEmail
+                        email={this.state.email}
+                        venmo={this.state.venmo}
+
+                        name={this.state.name}
+                        address={this.state.address}
+                        city={this.state.city}
+                        state={this.state.state}
+                        zip={this.state.zip}
+
+                        subscribe={this.state.subsribe}
+                        noShipping={this.state.noShipping}
+                    />
+                </BrowserRouter>
+            </Provider>
+        )
+    }
+
+
     render() {
         return (
             <div className='row'>
                 <div className='col-md-6 col-12'>
-                    <Cart noShipping={this.state.noShipping}></Cart>
+                    <Cart noShipping={this.state.noShipping} shopLink={true}></Cart>
                 </div>
                 <br />
                 <div className='col-md-6 col-12'>
                     <h1 className='lg'>Checkout</h1>
                     <form className='grayBG' style={{ textAlign: "left" }}>
-                        
-                       
+
+
                         <h5>Address</h5>
                         <div className='row'>
                             <label className='col-3' for='name'>Name:</label> &nbsp;
@@ -104,7 +161,7 @@ class CheckoutPage extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        
+
                         <div className='row'>
                             <label className='col-3' for='address'>Address: </label> &nbsp;
                             <input
@@ -140,7 +197,7 @@ class CheckoutPage extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        
+
                         <div className='row'>
                             <label className='col-3' for='zip'>Zipcode: </label> &nbsp;
                             <input
@@ -159,7 +216,7 @@ class CheckoutPage extends Component {
                             onChange={() => { this.setState({ noShipping: !this.state.noShipping }) }}
                         /> &nbsp;
                         <label for='noShipping'>I live nearby, you can just drop my order off at my house</label>
-                        <br/> <br/>
+                        <br /> <br />
                         <h5>Info</h5>
 
                         <div className='row'>
@@ -193,11 +250,42 @@ class CheckoutPage extends Component {
                         /> &nbsp;
                         <label for='subscribe'>I want to hear when you have new things for sale</label>
                         <div>
-                            {this.state.error? <p className='text-danger'>{this.state.error}</p> : null}
+                            {this.state.error ? <p className='text-danger'>{this.state.error}</p> : null}
                             <Button onClick={event => this.onSubmit(event)}>Submit</Button>
                         </div>
                     </form>
                 </div>
+            </div>
+        )
+    }
+}
+
+class OrderEmail extends Component {
+    render() {
+        return (
+            <div className='grayBG'>
+                <h5>Order for: </h5>
+                <p>Name: {this.props.name}</p>
+                <p>Email: {this.props.email}</p>
+                <p>Venmo: {this.props.venmo}</p>
+                <br />
+                <h5>Address: </h5>
+                <p>{this.props.name}</p>
+                <p>{this.props.address}</p>
+                <p>{this.props.city}</p>
+                <p>{this.props.state}</p>
+                <p>{this.props.zip}</p>
+                <br />
+                <div>
+                    <input type='checkbox' disabled='disabled' checked={this.props.subscribe} /> &nbsp;
+                    <p>Subscribe</p>
+                </div>
+                <div>
+                    <input type='checkbox' disabled='disabled' checked={this.props.noShipping} /> &nbsp;
+                    <p>Local Drop Off</p>
+                </div>
+                <p>{this.props.name}</p>
+                <Cart noShipping={this.props.noShipping} checkoutLink={false} shopLink={false}></Cart>
             </div>
         )
     }

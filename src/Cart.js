@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { removeFromCart } from './actions'
 
 class Cart extends Component {
-    calculateTotal() {
+    calculateTotal = () => {
         var total = 0;
         Object.keys(this.props.cart).forEach(key => {
             total += this.props.items[key]['price'] * this.props.cart[key]
@@ -11,8 +12,9 @@ class Cart extends Component {
         return total;
     }
 
-    calculateShipping() {
+    calculateShipping = () => {
         var shipping = 0;
+        if (this.props.noShipping) return 0;
         Object.keys(this.props.cart).forEach(key => {
             shipping += 7 * this.props.cart[key]
         })
@@ -43,7 +45,7 @@ class Cart extends Component {
                                         <div className='col-5'>{key}</div>
                                         <div className='col-5'>${this.props.items[key]['price']}</div>
                                         <div className='col-1'>x{this.props.cart[key]}</div>
-                                        <div className='col-1' className='cancel' onClick={() => this.props.removeFromCart(key)}>-</div>
+                                        <div className='col-1' className='cancel' onClick={() => this.props.removeFromCart(key)}>-</div> 
                                     </div>
                                     {this.props.cart[key] > this.props.items[key]['stock'] ?
                                         <div>
@@ -54,7 +56,7 @@ class Cart extends Component {
                             )
                         })
                     }
-                    {this.overStock()? <p className='text-danger'>Items in your cart are out of stock, you can continue to place your order and we will make those items for you in 2-4 weeks, or you can remove those items.</p>:null}
+                    {this.overStock() ? <p className='text-danger'>Items in your cart are out of stock, you can continue to place your order and we will make those items for you in 2-4 weeks, or you can remove those items.</p> : null}
                     <hr />
                     <div className='row'>
                         <div className='col-5'>Sub Total: </div>
@@ -68,6 +70,8 @@ class Cart extends Component {
                         <div className='col-5'>Total: </div>
                         <div className='col-6'>${this.calculateTotal() + this.calculateShipping()}</div>
                     </div>
+                    {Object.keys(this.props.cart).length > 0 && this.props.checkoutLink ? <Link to='/checkout'>Checkout</Link> : null}
+                    {Object.keys(this.props.cart).length == 0 && this.props.shopLink ? <Link to='/shop'>Shop</Link> : null}
                 </div>
             </div>
         )

@@ -1,9 +1,10 @@
-import { FETCH_ITEMS, ADD_TO_CART, REMOVE_FROM_CART, CHECKOUT, CLEAR_CART } from "../actions"
+import { FETCH_ITEMS, ADD_TO_CART, REMOVE_FROM_CART, CHECKOUT, CLEAR_CART, FETCH_REVIEWS } from "../actions"
 
 const initialCart = {}
 const initialState = {
     items: null,
-    cart: initialCart
+    cart: initialCart,
+    reviews: []
 }
 
 
@@ -13,6 +14,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 items: action.payload
+            }
+        case FETCH_REVIEWS:
+            return {
+                ...state,
+                reviews: action.payload
             }
         case ADD_TO_CART:
             var newCart = {...state.cart}

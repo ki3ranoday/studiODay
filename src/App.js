@@ -6,11 +6,12 @@ import Shop from './Shop'
 import './App.css';
 import Bar from './Navbar';
 import { connect } from 'react-redux';
-import { fetchItems } from './actions';
+import { fetchItems, fetchReviews } from './actions';
 
 class App extends Component {
   componentDidMount(){
     this.props.fetchItems();
+    this.props.fetchReviews();
   }
   render(){
   return (
@@ -26,4 +27,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, {fetchItems})(App);
+export default connect(null, {fetchItems, fetchReviews})(App);
