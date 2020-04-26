@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "studioday-52a42"
+  },
+  "targets": {
+    "studioday-52a42": {
+      "hosting": {
+        "studioday": [
+          "studioday"
+        ]
+      }
+    }
   }
 }
