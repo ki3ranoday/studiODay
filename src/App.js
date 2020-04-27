@@ -23,7 +23,6 @@ class App extends Component {
           <Route exact path='/checkout' component={CheckoutPage} />
           <Route exact path='/shop' component={Shop} />
         </Switch>
-      <Footer></Footer>
     </div>
   );
   }

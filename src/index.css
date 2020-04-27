@@ -33,6 +33,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+input[type=text]{
+  background-color: #fff0;
+  padding: 3px;
+  border: none;
+  border-bottom: 1pt solid black;
+  outline: 1pt black;
+  width: 200px
+}
+input[type=text].light{
+  color: white;
+  width: 200px;
+  background-color: #fff0;
+  padding: 3px;
+  border: none;
+  border-bottom: 1pt solid white;
+  outline: 1pt white;
+}
+input.light::placeholder{
+  color: lightgray;
+}
+
 .navBrand {
   font-family: 'StudiODayFont', Arial, Helvetica, sans-serif;
   font-size: 24px;
@@ -139,7 +160,7 @@ code {
 }
 
 .button:hover {
-  background-color: #000c;
+  background-color: #fff7;
   border: 2px solid #fffc;
   cursor: pointer;
   text-decoration: none;
@@ -163,7 +184,7 @@ code {
 
 .checkoutPage {
   max-width: 600px;
-  padding: 0 30px 30px;
+  padding: 0 30px 500px;
   margin: auto;
 }
 
@@ -272,7 +293,7 @@ body {
 
 .instaLink {
   font-size: 18px;
-  color: black;
+  color: white;
 }
 
 .instaLink:hover {
@@ -281,6 +302,8 @@ body {
 }
 
 .footer {
+  color: white;
   background-color: lightslategrey;
-  padding: 50px 0;
+  padding: 50px 50px 5px;
 }
+

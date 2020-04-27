@@ -5,6 +5,7 @@ import {createStore, applyMiddleware, compose} from 'redux'
 import reduxThunk from 'redux-thunk'
 
 import './index.css';
+import './font-awesome-4.7.0/css/font-awesome.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';

@@ -51,6 +51,10 @@ export const checkout = (cartupdates, emailinfo, orderInfo) => async dispatch =>
     })
 }
 
+export const addSubscriber = (subscriber) => async dispatch => {
+    subscribersRef.push(subscriber)
+}
+
 export const submitReview = (review) => async dispatch => {
     reviewsRef.push(review)
 }

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addToCart } from './actions'
 import { Button } from 'react-bootstrap';
 import Cart from './Cart';
+import Footer from './Footer';
 
 class Shop extends Component {
     render() {
@@ -61,8 +62,8 @@ class Shop extends Component {
                                 </div>
                             </div>
                         </div>
+                        <Footer/>
                     </div>
-
                 </div>
             </div >
         )
