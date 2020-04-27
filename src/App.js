@@ -5,6 +5,7 @@ import CheckoutPage from './CheckoutPage'
 import Shop from './Shop'
 import './App.css';
 import Bar from './Navbar';
+import Footer from './Footer'
 import { connect } from 'react-redux';
 import { fetchItems, fetchReviews } from './actions';
 
@@ -18,10 +19,11 @@ class App extends Component {
     <div className="App">
       <Bar></Bar>
         <Switch>
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/' component={Shop} />
           <Route exact path='/checkout' component={CheckoutPage} />
           <Route exact path='/shop' component={Shop} />
         </Switch>
+      <Footer></Footer>
     </div>
   );
   }

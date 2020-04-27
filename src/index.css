@@ -1,26 +1,40 @@
-html {
+/* html {
     background: url("./assets/DSC_0209.jpeg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+} */
+
+@font-face {
+  font-family: "StudiODayFont";
+  src: url("./studiodayfont/studiodayv1.eot");
+  src: url("./studiodayfont/studiodayv1.woff") format("woff"), url("./studiodayfont/studiodayv1.ttf") format("ttf"), url("./studiodayfont/studiodayv1.svg") format("svg");
+}
+
+h1 {
+  font-family: 'StudiODayFont', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+html {
+  background-color: white;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .navBrand {
+  font-family: 'StudiODayFont', Arial, Helvetica, sans-serif;
   font-size: 24px;
   color: black;
 }
@@ -30,8 +44,8 @@ code {
   text-decoration: none;
 }
 
-
 .navLink {
+  font-family: 'StudiODayFont', Arial, Helvetica, sans-serif;
   font-size: 18px;
   color: grey;
 }
@@ -47,56 +61,226 @@ code {
   border-radius: 5px;
 }
 
-.lg {
-  color: lightgrey;
-  font-weight: bolder;
-}
-
-body {
-  background: transparent;
-  background-color: #fff0;
-}
-
-.cancel {
-  color: red;
-  font-weight: bolder;
-}
-
 .cancel:hover {
-  color: #FAA;
   cursor: pointer;
 }
 
 .shopContainer {
-  padding-left: 30px;
-  padding-right: 30px;
+  /*background-color: #706859*/
+}
+
+.noPadding {
+  padding: 0 !important;
 }
 
 .shopItemContainer {
+  position: relative;
   width: 100%;
 }
+
 .shopItemImg {
   width: 100%;
 }
+
 .shopItemInfo {
   width: 100%;
-  height: 100%;
+  height: 0;
   position: absolute;
-  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background: #0007;
   color: white;
-  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  transition: .5s;
 }
 
 .shopItemContainer:hover .shopItemInfo {
-  visibility: visible;
+  transition: .5s;
+  opacity: 100%;
+  height: 100%;
 }
 
-.addToCart {
+.outOfStock {
+  padding: none;
+  color: slategray;
   position: absolute;
-  bottom: 15px;
+  visibility: visible;
+  bottom: 0;
   right: 15px;
+}
+
+.shopItemContainer:hover .outOfStock {
+  visibility: hidden;
+}
+
+.shopItemInfo .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered {
+  margin: auto;
+}
+
+.button {
+  width: 200px;
+  margin: 15px auto;
+  color: white;
+  background-color: transparent;
+  text-align: center;
+  border: 2px solid #fff7;
+}
+
+.button:hover {
+  background-color: #000c;
+  border: 2px solid #fffc;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button.dark {
+  width: 200px;
+  margin: 15px auto;
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border: 2px solid #000;
+}
+
+.button.dark:hover {
+  background-color: #0001;
+  border: 2px solid #000c;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.checkoutPage {
+  max-width: 600px;
+  padding: 0 30px 30px;
+  margin: auto;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-size: 26px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #ffffff;
+  height: 100vh;
+  perspective: 1px;
+  transform-style: preserve-3d;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax-padding {
+  background-color: #fff0;
+  height: 75vh;
+}
+
+.parallax-heading {
+  font-size: 10vw;
+  color: white;
+  margin: auto;
+  margin-top: 15vh;
+}
+
+.parallax-wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 20vh;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+}
+
+.parallax-wrapper::before {
+  content: "";
+  width: 100vw;
+  height: 130vh;
+  top: 0;
+  left: 0;
+  background-image: url("./assets/UNADJUSTEDNONRAW_thumb_2919.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  z-index: -1;
+  transform: translateZ(-1px) scale(2);
+}
+
+.regular-wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 20vh;
+  background-image: url("./assets/DSC_0209.jpeg");
+  z-index: 2;
+  position: relative;
+}
+
+.content {
+  margin: 0 auto;
+  width: 100%;
+  background: rgb(207, 201, 196);
+}
+
+.carrot {
+  font-size: 24px;
+  font-weight: bolder;
+  font-family: sans-serif;
+  color: #fff9;
+  animation: MoveUpDown 1s ease-in-out infinite;
+  position: relative;
+  -webkit-transform: scale(2.5, 1);
+  /* Safari and Chrome */
+  -moz-transform: scale(2.5, 1);
+  /* Firefox */
+  -ms-transform: scale(2.5, 1);
+  /* IE 9 */
+  -o-transform: scale(2.5, 1);
+  /* Opera */
+  transform: scale(2.5, 1);
+  /* W3C */
+  padding-right: 17px;
+}
+
+.carrot:hover{
+  cursor: pointer;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 15px;
+  }
+}
+
+.insta {
+  height: 18px;
+  width: 18px;
+}
+
+.instaLink {
+  font-size: 18px;
+  color: black;
+}
+
+.instaLink:hover {
+  color: darkslategrey;
+  text-decoration: none;
+}
+
+.footer {
+  background-color: lightslategrey;
+  padding: 50px 0;
 }

@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { checkout, clearCart } from './actions'
 import Cart from './Cart'
-import {store} from './index'
-import {Provider} from 'react-redux'
-import {BrowserRouter} from 'react-router-dom'
+import { store } from './index'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 const initialState = {
     email: '',
@@ -139,122 +139,119 @@ class CheckoutPage extends Component {
 
     render() {
         return (
-            <div className='row'>
-                <div className='col-md-6 col-12'>
-                    <Cart noShipping={this.state.noShipping} shopLink={true}></Cart>
-                </div>
+            <div className='checkoutPage'>
+                <Cart noShipping={this.state.noShipping} shopLink={true}></Cart>
                 <br />
-                <div className='col-md-6 col-12'>
-                    <h1 className='lg'>Checkout</h1>
-                    <form className='grayBG' style={{ textAlign: "left" }}>
-
-
-                        <h5>Address</h5>
-                        <div className='row'>
-                            <label className='col-3' for='name'>Name:</label> &nbsp;
+                <br />
+                <form style={{ textAlign: "left" }}>
+                    <h5>Address</h5>
+                    <div className='row'>
+                        <label className='col-3' for='name'>Name:</label> &nbsp;
                             <input
-                                required
-                                type='text'
-                                id='name'
-                                placeholder='name'
-                                value={this.state.name}
-                                onChange={this.onChange}
-                            />
-                        </div>
+                            required
+                            type='text'
+                            id='name'
+                            placeholder='name'
+                            value={this.state.name}
+                            onChange={this.onChange}
+                        />
+                    </div>
 
-                        <div className='row'>
-                            <label className='col-3' for='address'>Address: </label> &nbsp;
+                    <div className='row'>
+                        <label className='col-3' for='address'>Address: </label> &nbsp;
                             <input
-                                required
-                                type='text'
-                                id='address'
-                                placeholder='Street Address'
-                                value={this.state.address}
-                                onChange={this.onChange}
-                            />
-                        </div>
+                            required
+                            type='text'
+                            id='address'
+                            placeholder='Street Address'
+                            value={this.state.address}
+                            onChange={this.onChange}
+                        />
+                    </div>
 
-                        <div className='row'>
-                            <label className='col-3' for='city'>City: </label> &nbsp;
+                    <div className='row'>
+                        <label className='col-3' for='city'>City: </label> &nbsp;
                             <input
-                                required
-                                type='text'
-                                id='city'
-                                placeholder='City or Town'
-                                value={this.state.city}
-                                onChange={this.onChange}
-                            />
-                        </div>
+                            required
+                            type='text'
+                            id='city'
+                            placeholder='City or Town'
+                            value={this.state.city}
+                            onChange={this.onChange}
+                        />
+                    </div>
 
-                        <div className='row'>
-                            <label className='col-3' for='state'>State: </label> &nbsp;
+                    <div className='row'>
+                        <label className='col-3' for='state'>State: </label> &nbsp;
                             <input
-                                required
-                                type='text'
-                                id='state'
-                                placeholder='State'
-                                value={this.state.state}
-                                onChange={this.onChange}
-                            />
-                        </div>
+                            required
+                            type='text'
+                            id='state'
+                            placeholder='State'
+                            value={this.state.state}
+                            onChange={this.onChange}
+                        />
+                    </div>
 
-                        <div className='row'>
-                            <label className='col-3' for='zip'>Zipcode: </label> &nbsp;
+                    <div className='row'>
+                        <label className='col-3' for='zip'>Zipcode: </label> &nbsp;
                             <input
-                                required
-                                type='text'
-                                id='zip'
-                                placeholder='Zipcode'
-                                value={this.state.zip}
-                                onChange={this.onChange}
-                            />
-                        </div>
-                        <input
-                            type='checkbox'
-                            id='noShipping'
-                            checked={this.state.noShipping}
-                            onChange={() => { this.setState({ noShipping: !this.state.noShipping }) }}
-                        /> &nbsp;
+                            required
+                            type='text'
+                            id='zip'
+                            placeholder='Zipcode'
+                            value={this.state.zip}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <br />
+                    <input
+                        type='checkbox'
+                        id='noShipping'
+                        checked={this.state.noShipping}
+                        onChange={() => { this.setState({ noShipping: !this.state.noShipping }) }}
+                    /> &nbsp;
                         <label for='noShipping'>I live nearby, you can just drop my order off at my house</label>
-                        <br /> <br />
-                        <h5>Info</h5>
+                    <br /> <br />
+                    <h5>Info</h5>
 
-                        <div className='row'>
-                            <label className='col-3' for='venmo'>Venmo ID:</label> &nbsp;
+                    <div className='row'>
+                        <label className='col-3' for='venmo'>Venmo ID:</label> &nbsp;
                             <input
-                                required
-                                type='text'
-                                id='venmo'
-                                placeholder='venmo id'
-                                value={this.state.venmo}
-                                onChange={this.onChange}
-                            />
-                        </div>
-                        <div className='row'>
-                            <label className='col-3' for='email'>Email:</label> &nbsp;
+                            required
+                            type='text'
+                            id='venmo'
+                            placeholder='venmo id'
+                            value={this.state.venmo}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className='row'>
+                        <label className='col-3' for='email'>Email:</label> &nbsp;
                             <input
-                                required
-                                type='email'
-                                id='email'
-                                placeholder='email'
-                                value={this.state.email}
-                                onChange={this.onChange}
-                            />
-                        </div>
+                            required
+                            type='email'
+                            id='email'
+                            placeholder='email'
+                            value={this.state.email}
+                            onChange={this.onChange}
+                        />
+                    </div>
 
-                        <input
-                            type='checkbox'
-                            id='subscribe'
-                            checked={this.state.subscribe}
-                            onChange={() => { this.setState({ subscribe: !this.state.subscribe }) }}
-                        /> &nbsp;
-                        <label for='subscribe'>I want to hear when you have new things for sale</label>
-                        <div>
-                            {this.state.error ? <p className='text-danger'>{this.state.error}</p> : null}
-                            <Button onClick={event => this.onSubmit(event)}>Submit</Button>
-                        </div>
-                    </form>
-                </div>
+                    <input
+                        type='checkbox'
+                        id='subscribe'
+                        checked={this.state.subscribe}
+                        onChange={() => { this.setState({ subscribe: !this.state.subscribe }) }}
+                    /> &nbsp;
+                    <label for='subscribe'>I want to hear when you have new things for sale</label>
+                    <br/>
+
+                    <div>
+                        {this.state.error ? <p className='text-danger'>{this.state.error}</p> : null}
+                        <p className='button dark' onClick={event => this.onSubmit(event)}>Checkout</p>
+                    </div>
+                </form>
             </div>
         )
     }
