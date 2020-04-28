@@ -20,6 +20,8 @@ h1 {
 html {
   background-color: white;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100vw;
 }
 
 body {
@@ -121,7 +123,7 @@ input.light::placeholder{
 
 .shopItemContainer:hover .shopItemInfo {
   transition: .5s;
-  opacity: 100%;
+  opacity: 100;
   height: 100%;
 }
 
@@ -149,7 +151,13 @@ input.light::placeholder{
 }
 
 .centered {
-  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .button {
@@ -191,29 +199,34 @@ input.light::placeholder{
 }
 
 .parallax-padding {
+  position: relative;
   background-color: #fff0;
-  height: 75vh;
+  height: 100vh;
 }
 
 .parallax-heading {
   font-size: 10vw;
   color: white;
-  margin: auto;
-  margin-top: 15vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .parallax-wrapper {
   width: 100vw;
   height: 100vh;
-  padding-top: 20vh;
   box-sizing: border-box;
   transform-style: preserve-3d;
 }
 
 .parallax-wrapper::before {
   content: "";
-  width: 100vw;
-  height: 130vh;
+  width: 150vh;
+  height: 100vh;
   top: 0;
   left: 0;
   background-image: url("./assets/UNADJUSTEDNONRAW_thumb_2919.jpg");
@@ -224,15 +237,6 @@ input.light::placeholder{
   transform: translateZ(-1px) scale(2);
 }
 
-.regular-wrapper {
-  width: 100vw;
-  height: 100vh;
-  padding-top: 20vh;
-  background-image: url("./assets/DSC_0209.jpeg");
-  z-index: 2;
-  position: relative;
-}
-
 .content {
   margin: 0 auto;
   width: 100%;
@@ -240,7 +244,7 @@ input.light::placeholder{
 }
 
 .carrot {
-  font-size: 24px;
+  font-size: 2vw;
   font-weight: bolder;
   font-family: sans-serif;
   color: #fff9;
@@ -256,7 +260,7 @@ input.light::placeholder{
   /* Opera */
   transform: scale(2.5, 1);
   /* W3C */
-  padding-right: 17px;
+  padding-right: 1vw;
 }
 
 .carrot:hover{
@@ -293,3 +297,33 @@ input.light::placeholder{
   padding: 50px 50px 5px;
 }
 
+
+.cartIconBox {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #0009;
+  border-radius: 3px;
+  z-index: 10;
+}
+.cartIconBox:hover {
+  cursor: pointer;
+}
+.cartIconBox i {
+  color: white;
+  font-size: 30px;
+
+}
+.cartIconNum {
+  border-radius: 12px;
+  background: red;
+  padding: 0px 5px; 
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  z-index: 11;
+}
