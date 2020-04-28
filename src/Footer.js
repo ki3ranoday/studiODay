@@ -56,7 +56,7 @@ class Footer extends Component {
                     </div>
                     <div className='col d-lg-inline d-none'></div>
                 </div>
-                <p>© Kieran O'Day 2020</p>
+                <p className = 'text-right'>© Kieran O'Day 2020</p>
             </div>
         )
     }

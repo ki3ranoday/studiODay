@@ -16,7 +16,10 @@ class Cart extends Component {
         var shipping = 0;
         if (this.props.noShipping) return 0;
         Object.keys(this.props.cart).forEach(key => {
-            shipping += 7 * this.props.cart[key]
+            if(this.props.items[key]['shipping'])
+                shipping += this.props.items[key]['shipping'] * this.props.cart[key];
+            else 
+                shipping += 7 * this.props.cart[key];
         })
         if (shipping > 20) {
             return 20

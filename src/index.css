@@ -8,8 +8,8 @@
 
 @font-face {
   font-family: "StudiODayFont";
-  src: url("./studiodayfont/studiodayv1.eot");
-  src: url("./studiodayfont/studiodayv1.woff") format("woff"), url("./studiodayfont/studiodayv1.ttf") format("ttf"), url("./studiodayfont/studiodayv1.svg") format("svg");
+  src: url("./studiodayfont/studiodayv2.eot");
+  src: url("./studiodayfont/studiodayv2.woff") format("woff"), url("./studiodayfont/studiodayv2.ttf") format("ttf"), url("./studiodayfont/studiodayv2.svg") format("svg");
 }
 
 h1 {
@@ -34,7 +34,7 @@ code {
 }
 
 input[type=text]{
-  background-color: #fff0;
+  background-color: #fff0 !important;
   padding: 3px;
   border: none;
   border-bottom: 1pt solid black;
@@ -44,7 +44,7 @@ input[type=text]{
 input[type=text].light{
   color: white;
   width: 200px;
-  background-color: #fff0;
+  background-color: #fff0 !important;
   padding: 3px;
   border: none;
   border-bottom: 1pt solid white;
@@ -53,6 +53,8 @@ input[type=text].light{
 input.light::placeholder{
   color: lightgray;
 }
+
+
 
 .navBrand {
   font-family: 'StudiODayFont', Arial, Helvetica, sans-serif;
@@ -125,7 +127,7 @@ input.light::placeholder{
 
 .outOfStock {
   padding: none;
-  color: slategray;
+  color: white;
   position: absolute;
   visibility: visible;
   bottom: 0;
@@ -303,7 +305,7 @@ body {
 
 .footer {
   color: white;
-  background-color: lightslategrey;
+  background-color: rgb(150, 164, 179);
   padding: 50px 50px 5px;
 }
 

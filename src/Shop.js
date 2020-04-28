@@ -13,7 +13,7 @@ class Shop extends Component {
             <div>
                 <div class="parallax-wrapper">
                     <div className='parallax-padding'>
-                        <h1 className='parallax-heading'>STUDIODAY <p className='carrot' onClick={()=> this.refs.content.scrollIntoView({behavior:'smooth'})}>&#9660;</p></h1>
+                        <h1 className='parallax-heading'>STUDIODAY <p className='carrot' onClick={() => this.refs.content.scrollIntoView({ behavior: 'smooth' })}>&#9660;</p></h1>
                     </div>
                     <div ref='content' class="content">
                         <div className='shopContainer'>
@@ -23,7 +23,9 @@ class Shop extends Component {
                                         {
                                             this.props.items ?
                                                 <>
-                                                    {Object.keys(this.props.items).map(key => {
+                                                    {Object.keys(this.props.items).sort((a,b) => {
+                                                        return this.props.items[b]['stock'] - this.props.items[a]['stock']
+                                                    }).map(key => {
                                                         const item = this.props.items[key]
                                                         return (
                                                             <div className='col-xl-4 col-md-6 col-12 noPadding'>
@@ -39,13 +41,10 @@ class Shop extends Component {
                                                                     {item['stock'] <= 0 ?
                                                                         <p className='outOfStock'>Out of Stock</p>
                                                                         :
-                                                                        <>
-                                                                            {item['stock'] <= 3 ?
-                                                                                <p className='outOfStock'>Only {item['stock']} left in stock</p>
-                                                                                :
-                                                                                null
-                                                                            }
-                                                                        </>
+                                                                        <div className ='outOfStock text-right'>
+                                                                            <p style={{marginBottom:'0px'}}>{item['stock']}</p>
+                                                                            <p>Stock</p>
+                                                                        </div>
                                                                     }
                                                                 </div>
                                                             </div>
@@ -57,12 +56,12 @@ class Shop extends Component {
                                         }
                                     </div>
                                 </div>
-                                <div className='col-lg-3 col-md-4 col-12' style={{ backgroundColor: 'rgb(190,190,200)' }}>
+                                <div className='col-lg-3 col-md-4 col-12' style={{ backgroundColor: '#fff9f9' }}> 
                                     <Cart checkoutLink={true}></Cart>
                                 </div>
                             </div>
                         </div>
-                        <Footer/>
+                        <Footer />
                     </div>
                 </div>
             </div >
