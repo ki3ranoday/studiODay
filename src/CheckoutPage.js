@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { checkout, clearCart } from './actions'
-import Cart from './Cart'
+import Cart, { calculateTotal, calculateShipping, overStock } from './Cart'
 import Footer from './Footer'
 import { store } from './index'
 import { Provider } from 'react-redux'
@@ -18,6 +18,8 @@ const initialState = {
     city: '',
     state: '',
     zip: '',
+
+    details: '',
 
     subscribe: false,
     noShipping: false,
@@ -67,7 +69,9 @@ class CheckoutPage extends Component {
         var itemUpdates = {}
         Object.keys(this.props.cart).forEach(item => {
             var key = item + '/stock';
-            itemUpdates[key] = this.props.items[item]['stock'] - this.props.cart[item]
+            if (this.props.items[item]['stock'] - this.props.cart[item] > 0) {
+                itemUpdates[key] = this.props.items[item]['stock'] - this.props.cart[item]
+            }
         })
         const emailinfo = {
             'email': this.state.email,
@@ -76,11 +80,16 @@ class CheckoutPage extends Component {
             'emailHTML': this.emailHtml(),
             'subscribe': this.state.subscribe
         }
+        const shipping = calculateShipping(this.props.cart, this.props.items, this.state.noShipping)
+        const total = calculateTotal(this.props.cart, this.props.items, this.state.noShipping)
         const orderInfo = {
             'name': this.state.name,
             'email': this.state.email,
             'venmo': this.state.venmo,
             'cart': this.props.cart,
+            'shipping': shipping,
+            'total': total,
+            'details': overStock(this.props.cart, this.props.items) && !this.state.details ? 'commission' :  this.state.details,
             'address': {
                 'address': this.state.address,
                 'city': this.state.city,
@@ -239,7 +248,20 @@ class CheckoutPage extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-
+                        {overStock(this.props.cart, this.props.items) ?
+                            <div>
+                                <br />
+                                <label for='details'>Let us know if there are any small changes you would like when we make your order. Since we are making these items just for you, we want them to feel special</label>
+                                <textarea
+                                    type='text'
+                                    id='details'
+                                    placeholder='comment'
+                                    value={this.state.details}
+                                    onChange={this.onChange}
+                                />
+                            </div> : null
+                        }
+                        <br />
                         <input
                             type='checkbox'
                             id='subscribe'
@@ -252,7 +274,11 @@ class CheckoutPage extends Component {
                         <div className='row'>
                             <div className='col-3'></div>
                             <div className='float-left'>
-                                <p className='button dark' onClick={event => this.onSubmit(event)}>Checkout</p>
+                                {overStock(this.props.cart, this.props.items) ?
+                                    <p className='button dark' onClick={event => this.onSubmit(event)}>Submit Order</p>
+                                    :
+                                    <p className='button dark' onClick={event => this.onSubmit(event)}>Checkout</p>
+                                }
                             </div>
                         </div>
                     </form>

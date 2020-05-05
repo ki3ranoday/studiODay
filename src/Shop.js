@@ -36,7 +36,7 @@ class Shop extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='shopPageContainer'>
                 {this.state.width < 768 ?
                     <div className='cartIconBox' onClick={() => this.refs.cart.scrollIntoView({ behavior: 'smooth' })}>
                         <div className='cartIconNum'>{this.cartNum()}</div>
@@ -69,7 +69,12 @@ class Shop extends Component {
                                                                         <div className='text'>
                                                                             <h1>{key}</h1>
                                                                             <p>{item['description']}</p>
-                                                                            {item['stock'] > 0 && (!this.props.cart[key] || item['stock'] > this.props.cart[key]) ? <div><h3>${item['price']}</h3><p className='addToCart button' onClick={() => this.props.addToCart(key)}>Add To Cart</p> </div> : <p>Out of Stock</p>}
+                                                                            <h3>${item['price']}</h3>
+                                                                            {item['stock'] > 0 && (!this.props.cart[key] || item['stock'] > this.props.cart[key]) ?
+                                                                                <p className='addToCart button' onClick={() => this.props.addToCart(key)}>Add To Cart</p>
+                                                                                :
+                                                                                <p className='addToCart button' onClick={() => this.props.addToCart(key)}>Request</p>
+                                                                            }
                                                                         </div>
                                                                     </div>
                                                                     {item['stock'] <= 0 ?

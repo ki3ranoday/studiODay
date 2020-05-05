@@ -25,6 +25,9 @@ html {
 }
 
 body {
+  position: relative;
+  overflow-x: hidden;
+  width:100vw;
   margin: 0;
   font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -56,7 +59,15 @@ input.light::placeholder{
   color: lightgray;
 }
 
-
+textarea{
+  background-color: #fff0 !important;
+  padding: 3px;
+  border: none;
+  border-bottom: 1pt solid black;
+  outline: 1pt black;
+  width: 100%;
+  height: 2em;
+}
 
 .navBrand {
   font-family: 'StudiODayFont', Arial, Helvetica, sans-serif;
@@ -90,8 +101,9 @@ input.light::placeholder{
   cursor: pointer;
 }
 
-.shopContainer {
-  /*background-color: #706859*/
+.shopPageContainer {
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 .noPadding {
@@ -302,11 +314,12 @@ input.light::placeholder{
   width: 50px;
   height: 50px;
   position: fixed;
-  top: 10px;
+  top: 110px;
   right: 10px;
   background-color: #0009;
   border-radius: 3px;
   z-index: 10;
+  -webkit-backface-visibility: hidden;
 }
 .cartIconBox:hover {
   cursor: pointer;
@@ -326,4 +339,8 @@ input.light::placeholder{
   top: 1px;
   right: 1px;
   z-index: 11;
+}
+
+.warning {
+  color: #c55;
 }

@@ -1,23 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux'
-import {createStore, applyMiddleware, compose} from 'redux'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import reduxThunk from 'redux-thunk'
 
 import './index.css';
 import './font-awesome-4.7.0/css/font-awesome.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reducers from './reducers'
 
-export const store = createStore(reducers, {}, compose(applyMiddleware(reduxThunk)));
+export const store = createStore(reducers, {}, compose(
+  applyMiddleware(reduxThunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f));
 
 ReactDOM.render(
-  <Provider store = {store}>
+  <Provider store={store}>
     <BrowserRouter>
-        <App />
+      <App />
     </BrowserRouter>
   </Provider>,
 
