@@ -15,6 +15,7 @@ class Bar extends Component {
                             {/* <Nav.Link><Link to='/' className='navLink'>HOME</Link></Nav.Link> */}
                             <Nav.Link><Link to='/shop' className='navLink'>SHOP</Link></Nav.Link>
                             <Nav.Link><Link to='/checkout' className='navLink'>CHECKOUT</Link></Nav.Link>
+                            <Nav.Link><Link to='/contact' className='navLink'>CONTACT US</Link></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

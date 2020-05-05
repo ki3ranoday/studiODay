@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addSubscriber } from './actions'
-import Instagram from './assets/glyph-logo_May2016.png'
+import { Link } from 'react-router-dom'
 
 const initialState = {
     name: '',
@@ -43,6 +43,8 @@ class Footer extends Component {
                         <a className='instaLink' href='https://www.instagram.com/_kieramics_/'><i className='fa fa-instagram' /> @_kieramics_</a>
                         <br/>
                         <a className='instaLink' href='https://www.instagram.com/allthingstudioday/'><i className='fa fa-instagram' /> @allthingsstudioday</a>
+                        <br/><br/>
+                        <Link className='instaLink' to = '/contact'>Contact Us</Link>
                     </div>
                     <div className='col'>
                         <form name='subscribe-form' className='text-left float-left'>

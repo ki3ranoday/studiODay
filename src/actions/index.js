@@ -1,4 +1,4 @@
-import { itemsRef, ordersRef, reviewsRef, subscribersRef } from '../firebase'
+import { itemsRef, ordersRef, reviewsRef, subscribersRef, messagesRef } from '../firebase'
 import Axios from 'axios'
 
 export const ADD_TO_CART = 'ADD_TO_CART'
@@ -57,6 +57,10 @@ export const addSubscriber = (subscriber) => async dispatch => {
 
 export const submitReview = (review) => async dispatch => {
     reviewsRef.push(review)
+}
+
+export const sendMessage = (message) => async dispatch => {
+    messagesRef.push(message)
 }
 
 export const fetchReviews = () => async dispatch => {

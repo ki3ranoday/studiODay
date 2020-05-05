@@ -73,18 +73,21 @@ class Shop extends Component {
                                                                             {item['stock'] > 0 && (!this.props.cart[key] || item['stock'] > this.props.cart[key]) ?
                                                                                 <p className='addToCart button' onClick={() => this.props.addToCart(key)}>Add To Cart</p>
                                                                                 :
-                                                                                <p className='addToCart button' onClick={() => this.props.addToCart(key)}>Request</p>
+                                                                                <div>
+                                                                                    <p>Out of Stock</p> 
+                                                                                    <p className='addToCart button' onClick={() => this.props.addToCart(key)}>Request</p>
+                                                                                </div>
                                                                             }
                                                                         </div>
                                                                     </div>
-                                                                    {item['stock'] <= 0 ?
+                                                                    {/* {item['stock'] <= 0 ?
                                                                         <p className='outOfStock'>Out of Stock</p>
                                                                         :
                                                                         <div className='outOfStock text-right'>
                                                                             <p style={{ marginBottom: '0px' }}>{item['stock']}</p>
                                                                             <p>Stock</p>
                                                                         </div>
-                                                                    }
+                                                                    } */}
                                                                 </div>
                                                             </div>
                                                         )

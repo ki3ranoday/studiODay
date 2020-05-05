@@ -56,7 +56,7 @@ class Cart extends Component {
                                     </div>
                                     {this.props.cart[key] > this.props.items[key]['stock'] ?
                                         <div>
-                                            <p className='warning text-left'> This item only has {this.props.items[key]['stock']} left in stock</p>
+                                            <p className='warning text-left' style={{marginBottom:'0'}}> This item has {this.props.items[key]['stock']} left in stock</p>
                                         </div> : null
                                     }
                                 </>
@@ -65,6 +65,7 @@ class Cart extends Component {
                     }
                     {overStock(this.props.cart, this.props.items) ?
                         <div>
+                            <br/>
                             <p className='warning text-left'>Some of the items in your order are out of stock. If you would like us to make some just for you, submit your order and they should be ready in 2-4 weeks. If you have other items that are in stock and you would like shipped now, please submit a seperate order.</p>
                         </div> : null}
                     <hr />

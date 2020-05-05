@@ -6,6 +6,7 @@ import './App.css';
 import Bar from './Navbar';
 import { connect } from 'react-redux';
 import { fetchItems, fetchReviews } from './actions';
+import ContactPage from './ContactPage';
 
 class App extends Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path='/' component={Shop} />
           <Route exact path='/checkout' component={CheckoutPage} />
           <Route exact path='/shop' component={Shop} />
+          <Route exact path='/contact' component={ContactPage}/>
         </Switch>
       </div>
     );

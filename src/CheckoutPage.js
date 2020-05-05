@@ -150,7 +150,7 @@ class CheckoutPage extends Component {
     render() {
         return (
             <div>
-                <div className='checkoutPage'>
+                <div className='narrowPage'>
                     <Cart noShipping={this.state.noShipping} shopLink={true}></Cart>
                     <br />
                     <br />
